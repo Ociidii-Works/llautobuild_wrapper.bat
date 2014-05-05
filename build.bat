@@ -1,7 +1,35 @@
 @echo off
+echo.
+echo Linden Lab autobuild wrapper :3
+echo Copyright (c) 2014 Matthew "Mezmenir" Ruggieri
+echo.
+
+rem :: The MIT License (MIT)
+rem ::
+rem :: Copyright (c) 2014 Matthew "Mezmenir" Ruggieri
+rem ::
+rem :: Permission is hereby granted, free of charge, to any person obtaining a copy
+rem :: of this software and associated documentation files (the "Software"), to deal
+rem :: in the Software without restriction, including without limitation the rights
+rem :: to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+rem :: copies of the Software, and to permit persons to whom the Software is
+rem :: furnished to do so, subject to the following conditions:
+rem ::
+rem :: The above copyright notice and this permission notice shall be included in
+rem :: all copies or substantial portions of the Software.
+rem ::
+rem :: THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+rem :: IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+rem :: FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+rem :: AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+rem :: LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+rem :: OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+rem :: THE SOFTWARE.
+
 setlocal
 
 rem :: Process the command line arguments passed to the script.
+	if /i "%~1"=="/?" goto :SyntaxDescription
 	for %%A in ( %* ) do (
 		for /f "tokens=1,* delims=:" %%B in ("%%~A") do (
 
@@ -60,4 +88,18 @@ rem :: Invoke the autobuild.
 	autobuild build -c %ABLDTYPE%
 
 endlocal
+exit /b 0
+
+:SyntaxDescription
+	echo.
+	echo Command Syntax Help
+rem  :: This FOR loop is a hacky fix to echoing something that Windows will generally not let you echo.
+	for %%A in ("%~NX0 /msvc:[2010|2012] /arch:[32|64] /type:[ReleaseOS|DebugOS|RelWithDebugOS]") do (
+	echo %%~A
+	)
+	echo.
+	echo MSVC: Specifies which version of Microsoft Visual Studio should be used.
+	echo ARCH: Specifies the target build architecture.
+	echo TYPE: Specifies which release type should be used for autobuild.
+	echo.
 exit /b 0
