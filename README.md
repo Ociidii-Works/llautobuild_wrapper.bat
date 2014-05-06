@@ -15,5 +15,7 @@ We wrote this to help building the Second Life viewer.
 ### Usage examples:
 
 ``build.bat /msvc:2010 /arch:32 /type:RelWithDebInfoOS``
+
 ``build.bat /msvc:2012 /arch:32 /type:DebugOS``
+
 ``build.bat /msvc:2012 /arch:64 /type:ReleaseOS``
