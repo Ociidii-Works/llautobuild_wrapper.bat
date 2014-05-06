@@ -3,7 +3,7 @@ llautobuild_wrapper.bat
 
 ####Batch wrapper for Linden Lab's autobuild
 
-Scripting by @Mezmenir, design by @Voaxeyr
+Scripting by Mezmenir, design by Voaxeyr
 We wrote this to help building the Second Life viewer.
 
 ### Features:
